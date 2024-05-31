@@ -8,5 +8,5 @@ List of all apps included in this project with info related to it.
 
 ---
 
-|App Title|Arm32|Arm64|Amd64|Type |Official<br>Doc|PiHosted<br>Doc|Install Script|Youtube Video|
+|App Title|Media<br>Server|General<br>Apps|Core<br>Network|Type|Official<br>Doc|Bearlan<br>Doc|Install Script|Youtube Video|
 |:--------|:---:|:---:|:---:|:---:|:-------------:|:-------------:|:------------:|:-----------:|
