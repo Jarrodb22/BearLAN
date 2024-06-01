@@ -4,7 +4,7 @@ List of all apps included in this project with info related to it.
 
 |**Stacks:**          |**Media<br>Server:**|**Core<br>Network:**|**General<br>Apps:**|
 |:-------------------|:--------:|:--------:|:--------:|
-| 3 Stacks | 12 apps | 6 apps | 13 apps |
+| 3 Stacks | 12 apps | 7 apps | 13 apps |
 
 ---
 
@@ -21,13 +21,16 @@ List of all apps included in this project with info related to it.
 |[Readarr](https://readarr.com/)|Media Server|AMD64| [![](build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-readarr/) |  |  |  |
 |[Socks-5](https://github.com/serjs/socks5-server)|Media Server|AMD64| [![](build/images/docs_icon.png)](https://github.com/serjs/socks5-server/blob/master/README.md) |  |  |  |
 |[Sonarr](https://sonarr.tv/)|Media Server|AMD64| [![](build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-sonarr/) |  |  |  |
+
 |[Unpackerr](https://github.com/Unpackerr/unpackerr/blob/main/README.md)|Media Server|AMD64| [![](build/images/docs_icon.png)](https://unpackerr.zip/docs/install/compose) |  |  |  |
 |[Go links](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
+|[Net Box](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 |[Pi-Alert](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 |[Pi-Hole](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 |[Speedtest Tracker](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 |[Traefik](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 |[Wireguard](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
+
 |[Dash.](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
 |[Frigate](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
 |[Home Assistant](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |

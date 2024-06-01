@@ -1,6 +1,7 @@
 Version: '1'
 
 services:
+#Gluetun VPN tunnel
   gluetun:
     image: qmcgaw/gluetun
     cap_add:
@@ -15,14 +16,15 @@ services:
       - OPENVPN_USER=p9013639
       - OPENVPN_PASSWORD=Noshirton!23
       - SERVER_REGIONS=US Houston,US Texas
+    restart: unless-stopped
   
+#Socks5 HTTPS Proxy
   socks5:
     restart: always
     image: serjs/go-socks5-proxy
     env_file: .env
-    ports:
-      - 1080:1080
-  
+
+#Deluge Torrent downloader
   deluge:
     image: lscr.io/linuxserver/deluge:latest
     container_name: deluge
@@ -35,10 +37,9 @@ services:
     volumes:
       - /docker/deluge/config:/config
       - /mnt/media/downloads:/downloads
-    ports:
-      - 8112:8112
     restart: unless-stopped
-  
+
+#Prolwarr torrent indexer  
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
@@ -51,7 +52,8 @@ services:
     ports:
       - 9696:9696
     restart: unless-stopped
-  
+
+#Radarr movie library manager  
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
@@ -66,7 +68,8 @@ services:
     ports:
       - 7878:7878
     restart: unless-stopped
-  
+
+#Sonarr tv show library manager
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
@@ -81,7 +84,8 @@ services:
     ports:
       - 8989:8989
     restart: unless-stopped
-  
+
+#readarr book library manager 
   readarr:
     image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
@@ -97,6 +101,7 @@ services:
       - 8787:8787
     restart: unless-stopped
 
+#Bazarr subtitle library manager
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
     container_name: bazarr
@@ -111,7 +116,8 @@ services:
     ports:
       - 6767:6767
     restart: unless-stopped
-  
+
+#Jellyfin hosted media player and user interface
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
@@ -127,7 +133,8 @@ services:
       - 8096:8096
       - 8920:8920 #optional
     restart: unless-stopped
-  
+
+#Jellyseer avaliable media request and display 
   jellyseer:
     image: fallenbagel/jellyseerr:latest
     container_name: jellyseer
@@ -141,6 +148,7 @@ services:
       - 5055:5055
     restart: unless-stopped
 
+#Unpackerr file manager to clean up ugly files
   unpackerr:
     image: golift/unpackerr
     container_name: unpackerr
@@ -174,7 +182,8 @@ services:
       - UN_READARR_0_TIMEOUT=10s
       - UN_READARR_0_DELETE_ORIG=false
       - UN_READARR_0_DELETE_DELAY=5m
-  
+
+#Flaresolver proxy for prowlarr 
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
     container_name: flaresolverr

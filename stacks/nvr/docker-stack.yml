@@ -1,6 +1,7 @@
 version: "1"
 
 services:
+#Frigate NVR
   frigate:
     container_name: frigate
     privileged: true # this may not be necessary for all setups
@@ -27,4 +28,39 @@ services:
       - "8555:8555/udp" # WebRTC over udp
     environment:
       FRIGATE_RTSP_PASSWORD: "password"
+      
+#HomeAssistant smart home automation
+  homeassistant:
+    image: lscr.io/linuxserver/homeassistant:latest
+    container_name: homeassistant
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - /portainer/homeassistant/config:/config
+      - /var/run/dbus:/var/run/dbus:ro
+      - /mnt/media:/media
+    ports:
+      - 8123:8123 #optional
+    devices:
+      - /path/to/device:/path/to/device #optional
+    restart: unless-stopped
+
+# Mosquitto mqtt broker
+  mqtt5:
+    image: eclipse-mosquitto
+    container_name: mqtt5
+    ports:
+      - "1883:1883" #default mqtt port
+      - "9001:9001" #default mqtt port for websockets
+    volumes:
+      - ./config:/mosquitto/config:rw
+      - ./data:/mosquitto/data:rw
+      - ./log:/mosquitto/log:rw
+    restart: unless-stopped
  
