@@ -67,7 +67,7 @@ For refrence, my setup sort of looks like this at a high level
  dns-nameservers 192.168.2.254 1.1.1.1 8.8.8.8
  ``` 
  save and reboot.<br>
- 
+
  **Instal Docker and Portainer**<br>
  `sudo spt install curl -y`<br>
  `curl -fsSL https://get.docker.com -o get-docker.sh`<br>
@@ -80,7 +80,17 @@ For refrence, my setup sort of looks like this at a high level
  `docker volume create portainer_data`<br>
  `docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest`
 
+ **login to web ui**<br>
+ {host ip}:9443
  ### Add Template
  
 ## ARM32 support
 ARM32 support is being dropped, for that reason, i do not have any environment in my home lab using it and this repo is only tested to support AMD64.
+
+## Youtube Series
+|Episode|Video Link|Title|Docs Link|
+|:---|:---:|:-------------:|:---:|
+|No.1| [![](/build/images/ytlogo.png)](https://youtube.com) | Testing: First Video | [![](build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+
+## Acknowledgment
+- template is inspired by the work from [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) Portainer App Template branch in May 2024
