@@ -12,7 +12,8 @@ I've included for you a template of a few stacks, each stack contains multiple c
 ## Instalation Steps
 For the setup, im going to assume that you already have some sort of hypervisor or base os installed on your hardware as well as some form of network attached storage. Its not essential and all of the services will work just fine when installed on your local storage if that is how you have it archetechted.
 
-For refrence, my setup sort of looks like ![this](build/images/media%20stack.png) at a high level
+For refrence, my setup sort of looks like this at a high level
+![Media Stack](build/images/media%20stack.png)
  ### Setup OS
  ### Install  Portainer
  ### Add Template
