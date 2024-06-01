@@ -76,7 +76,7 @@ services:
       - TZ=America/Chicago
     volumes:
       - /docker/sonarr/config:/config
-      - /mnt/media/shows:/tv #optional
+      - /mnt/media/tv:/tv #optional
       - /mnt/media/downloads:/downloads #optional
     ports:
       - 8989:8989
@@ -106,7 +106,7 @@ services:
       - TZ=America/Chicago
     volumes:
       - /docker/bazarr/config:/config
-      - /mnt/media/shows:/tv #optional
+      - /mnt/media/tv:/tv #optional
       - /mnt/media/movies:/movies #optional
     ports:
       - 6767:6767
@@ -121,7 +121,7 @@ services:
       - TZ=America/Chicago
     volumes:
       - /docker/jellyfin/config:/config
-      - /mnt/media/shows:/data/tvshows
+      - /mnt/media/tv:/data/tvshows
       - /mnt/media/movies:/data/movies
     ports:
       - 8096:8096
@@ -151,7 +151,7 @@ services:
     environment:
       - TZ=America/Chicago
       # Sonarr Config
-      - UN_SONARR_0_URL=http://10.27.1.50:8989
+      - UN_SONARR_0_URL=http://{Host IP}:8989
       #- UN_SONARR_0_API_KEY=5a257a0794f64100b6f3fca7bcfe82b2
       - UN_SONARR_0_PATHS_0=/downloads
       - UN_SONARR_0_PROTOCOLS=torrent
@@ -159,7 +159,7 @@ services:
       - UN_SONARR_0_DELETE_ORIG=false
       - UN_SONARR_0_DELETE_DELAY=5m
       # Radarr Config
-      - UN_RADARR_0_URL=http://10.27.1.50:7878
+      - UN_RADARR_0_URL=http://Host IP:7878
       #- UN_RADARR_0_API_KEY=8f0c309c6d714ba4a055ff524804ad4e
       - UN_RADARR_0_PATHS_0=/downloads
       - UN_RADARR_0_PROTOCOLS=torrent
@@ -167,7 +167,7 @@ services:
       - UN_RADARR_0_DELETE_ORIG=false
       - UN_RADARR_0_DELETE_DELAY=5m
       # Readarr Config
-      - UN_READARR_0_URL=http://10.27.1.50:8787
+      - UN_READARR_0_URL=http://Host IP:8787
       #- UN_READARR_0_API_KEY=6dd0f838943a4924aeb668f1f82ad352
       - UN_READARR_0_PATHS_0=/downloads
       - UN_READARR_0_PROTOCOLS=torrent
