@@ -4,6 +4,7 @@ Repository for tutorials showing how to create home servers for fun using docker
 
 ## App Template
 I've included for you a template of a few stacks, each stack contains multiple containers that I use for various uses, the vision is to have a one-click creation of a media server, core network tools, and general apps that I use in my home lab. Additionally, I wanted to include the option to edit the docker-compose.yml to choose what apps are included in the stack and easily change the environmental variables to match your home network settings.
+
 ![App List](build/images/apps.png)
 
 ## Apps List
@@ -13,6 +14,7 @@ I've included for you a template of a few stacks, each stack contains multiple c
 For the setup, im going to assume that you already have some sort of hypervisor or base os installed on your hardware as well as some form of network attached storage. Its not essential and all of the services will work just fine when installed on your local storage if that is how you have it archetechted.
 
 For refrence, my setup sort of looks like this at a high level
+
 ![Media Stack](build/images/media%20stack.png)
  ### Setup OS
  ### Install  Portainer
