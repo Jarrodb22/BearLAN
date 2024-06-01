@@ -38,7 +38,7 @@ List of all apps included in this project with info related to it.
 |[Immich](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
 |[IT Tools](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
 |[Kasm](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
-|[Kwick](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[Kiwix](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
 |[MQTT](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
 |[Open Street Map](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
 |[Peppermint](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
