@@ -23,13 +23,25 @@ List of all apps included in this project with info related to it.
 |[Unpackerr](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client)|Media Server|AMD64| [![](build/images/docs_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
 |[Flaresolverr](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client)|Media Server|AMD64| [![](build/images/docs_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
 
+|[Go links](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
+|[Pi-Alert](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
+|[Pi-Hole](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
+|[Speedtest Tracker](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
+|[Traefik](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
+|[Wireguard](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 
-|[Adguardhome-sync](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
 
 
-
-
-
-
-
-|[Airsonic Advanced](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
+|[Dash.](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[Frigate](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[Home Assistant](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[Homarr](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[Immich](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[IT Tools](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[Kasm](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[Kwick](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[MQTT](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[Open Street Map](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[Peppermint](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[Project Send](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
+|[Uptime Kuma](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
