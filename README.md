@@ -17,9 +17,11 @@ For refrence, my setup sort of looks like this at a high level
 
 ![Media Stack](build/images/media%20stack.png)
  ### Setup OS
+ On a fresh debian install, you will want to set up the OS as i lay out below. With the os setup this waay you can run these containers easily using data from your shared drives. If you intend to use local directories you can skip this step.
+
  **Login as root**<br>
  `apt update && apt upgrade -y`
- `apt install sudo -y`
+ `apt install sudo -y`<br>
  Logout
  
  **Login as user and install cifs**<br>
@@ -29,7 +31,7 @@ For refrence, my setup sort of looks like this at a high level
  `sudo mkdir /mnt/{directory} (repeat for each mount location)`
 
  **Edit fstab**<br>
- `sudo nano /etc/fstab`
+ `sudo nano /etc/fstab`<br>
  and connect the mounts to your shares by inputting this line in the fstab.
  ```
  //{share ip}/{sharen name} /mnt/{directory} cifs credentials=/root/smbcredentials,uid=1000,gid=1000,noauto,x-systemd.automount 0 0
@@ -37,8 +39,8 @@ For refrence, my setup sort of looks like this at a high level
  you will need to do this for each drive location. In my instance i only use one and it is /mnt/media.
 
  **Create credentials file**<br>
- `sudo nano /root/smbcredentials`
- Paste in the following
+ `sudo nano /root/smbcredentials`<br>
+ paste in the following
  ```
  user={username}
  password={password}
@@ -46,10 +48,38 @@ For refrence, my setup sort of looks like this at a high level
 
  **Lastly mount all drives and reboot**<br>
  `sudo mount -a`
- `reboot`
-
+ `reboot`<br>
 
  ### Install  Portainer
+ Again, just a little extra bit of ssetup i like to do befor moving onto the portainer install is to set my network configuration to my liking.
+
+ **Edit interfaces**<br>
+ `sudo nano /etc/network/interfaces`<br>
+ you will want to find this portion and edit it to your liking
+ ```
+ # The primary network interface
+ auto enp0s5
+ iface enp0s5  inet static
+ address 192.168.2.236
+ netmask 255.255.255.0
+ gateway 192.168.2.254
+ dns-domain sweet.home
+ dns-nameservers 192.168.2.254 1.1.1.1 8.8.8.8
+ ``` 
+ 
+ save and reboot.
+ **Instal Docker and Portainer**<br>
+ `sudo spt install curl -y`<br>
+ `curl -fsSL https://get.docker.com -o get-docker.sh`<br>
+ `sudo sh get-docker.sh`<br>
+
+ **Add user to docker**<br>
+ `sudo usermod -aG docker {user}`
+
+ **Install Portainer**<br>
+ `docker volume create portainer_data`<br>
+ `docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest`
+
  ### Add Template
  
 ## ARM32 support
