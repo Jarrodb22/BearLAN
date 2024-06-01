@@ -2,9 +2,9 @@
 
 List of all apps included in this project with info related to it.
 
-|**Stacks:**          |**Media<br>Server:**|**General<br>Apps:**|**Core<br>Network:**|
+|**Stacks:**          |**Media<br>Server:**|**Core<br>Network:**|**General<br>Apps:**|
 |:-------------------|:--------:|:--------:|:--------:|
-| 3 Stacks | 13 apps | 23 apps | 9 apps |
+| 3 Stacks | 12 apps | 6 apps | 13 apps |
 
 ---
 
