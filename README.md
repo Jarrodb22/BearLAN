@@ -97,7 +97,7 @@ ARM32 support is being dropped, for that reason, i do not have any environment i
 ## Youtube Series
 |Episode|Video Link|Title|Docs Link|
 |:---|:---:|:-------------:|:---:|
-|No.1| [![](/build/images/ytlogo.png)](https://youtube.com) | Testing: First Video | [![](build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|No.1| [![](/build/images/ytlogo.png)](https://youtube.com) | Testing: First Video | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
 
 ## Acknowledgment
 - Template is inspired by the work from [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) Portainer App Template branch in May 2024
