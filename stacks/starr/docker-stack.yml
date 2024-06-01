@@ -1,0 +1,188 @@
+Version: '1'
+
+services:
+  gluetun:
+    image: qmcgaw/gluetun
+    cap_add:
+      - NET_ADMIN
+     ports:
+      - 1080:1080/tcp # Socks-5
+      - 8112:8112/tcp # Deluge
+    volumes:
+      - /docker/gluetun/config:/gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER=private internet access
+      - OPENVPN_USER=p9013639
+      - OPENVPN_PASSWORD=Noshirton!23
+      - SERVER_REGIONS=US Houston,US Texas
+  
+  socks5:
+    restart: always
+    image: serjs/go-socks5-proxy
+    env_file: .env
+    ports:
+      - 1080:1080
+  
+  deluge:
+    image: lscr.io/linuxserver/deluge:latest
+    container_name: deluge
+    networks: gluetun_1
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - DELUGE_LOGLEVEL=error #optional
+    volumes:
+      - /docker/deluge/config:/config
+      - /mnt/media/downloads:/downloads
+    ports:
+      - 8112:8112
+    restart: unless-stopped
+  
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - /docker/prowlarr/config:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+  
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - /docker/radarr/config:/config
+      - /mnt/media/movies:/movies #optional
+      - /mnt/media/downloads:/downloads #optional
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+  
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - /docker/sonarr/config:/config
+      - /mnt/media/shows:/tv #optional
+      - /mnt/media/downloads:/downloads #optional
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+  
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - /docker/readarr/config:/config
+      - /mnt/media/books:/books #optional
+      - /mnt/media/downloads:/downloads #optional
+    ports:
+      - 8787:8787
+    restart: unless-stopped
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - /docker/bazarr/config:/config
+      - /mnt/media/shows:/tv #optional
+      - /mnt/media/movies:/movies #optional
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+  
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - /docker/jellyfin/config:/config
+      - /mnt/media/shows:/data/tvshows
+      - /mnt/media/movies:/data/movies
+    ports:
+      - 8096:8096
+      - 8920:8920 #optional
+    restart: unless-stopped
+  
+  jellyseer:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseer
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - /docker/jellyseer/config:/config
+    ports:
+      - 5055:5055
+    restart: unless-stopped
+
+  unpackerr:
+    image: golift/unpackerr
+    container_name: unpackerr
+    volumes:
+      - /mnt/media/downloads:/downloads
+    restart: always
+    user: 1000:1000
+    environment:
+      - TZ=America/Chicago
+      # Sonarr Config
+      - UN_SONARR_0_URL=http://10.27.1.50:8989
+      #- UN_SONARR_0_API_KEY=5a257a0794f64100b6f3fca7bcfe82b2
+      - UN_SONARR_0_PATHS_0=/downloads
+      - UN_SONARR_0_PROTOCOLS=torrent
+      - UN_SONARR_0_TIMEOUT=10s
+      - UN_SONARR_0_DELETE_ORIG=false
+      - UN_SONARR_0_DELETE_DELAY=5m
+      # Radarr Config
+      - UN_RADARR_0_URL=http://10.27.1.50:7878
+      #- UN_RADARR_0_API_KEY=8f0c309c6d714ba4a055ff524804ad4e
+      - UN_RADARR_0_PATHS_0=/downloads
+      - UN_RADARR_0_PROTOCOLS=torrent
+      - UN_RADARR_0_TIMEOUT=10s
+      - UN_RADARR_0_DELETE_ORIG=false
+      - UN_RADARR_0_DELETE_DELAY=5m
+      # Readarr Config
+      - UN_READARR_0_URL=http://10.27.1.50:8787
+      #- UN_READARR_0_API_KEY=6dd0f838943a4924aeb668f1f82ad352
+      - UN_READARR_0_PATHS_0=/downloads
+      - UN_READARR_0_PROTOCOLS=torrent
+      - UN_READARR_0_TIMEOUT=10s
+      - UN_READARR_0_DELETE_ORIG=false
+      - UN_READARR_0_DELETE_DELAY=5m
+  
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=LOG_LEVEL:-info
+      - LOG_HTML=LOG_HTML:-false
+      - CAPTCHA_SOLVER=CAPTCHA_SOLVER:-none
+      - TZ=America/Chicago
+    ports:
+      - 8191:8191
+    restart: unless-stopped
