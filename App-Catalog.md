@@ -22,16 +22,12 @@ List of all apps included in this project with info related to it.
 |[Bazarr](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client)|Media Server|AMD64| [![](build/images/docs_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
 |[Unpackerr](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client)|Media Server|AMD64| [![](build/images/docs_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
 |[Flaresolverr](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client)|Media Server|AMD64| [![](build/images/docs_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
-
 |[Go links](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 |[Pi-Alert](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 |[Pi-Hole](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 |[Speedtest Tracker](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 |[Traefik](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 |[Wireguard](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
-
-
-
 |[Dash.](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
 |[Frigate](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
 |[Home Assistant](https://adguard.com/en/adguard-home/overview.html)| General Apps | AMD64 | [![](build/images/docs_icon.png)](https://github.com/linuxserver/docker-adguardhome-sync#usage) |  |  |  |
