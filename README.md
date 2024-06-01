@@ -17,32 +17,36 @@ For refrence, my setup sort of looks like this at a high level
 
 ![Media Stack](build/images/media%20stack.png)
  ### Setup OS
- Login as root
- 'apt update && apt upgrade -y'
- 'apt install sudo -y'
+ **Login as root**
+ `apt update && apt upgrade -y`
+ `apt install sudo -y`
  Logout
  
- Login as user and install cifs
- 'sudo apt install cifs-utils'
+ **Login as user and install cifs**
+ `sudo apt install cifs-utils`
 
- Make directory for mount
- 'sudo mkdir /mnt/{directory} (repeat for each mount location)'
+ **Make directory for mount**
+ `sudo mkdir /mnt/{directory} (repeat for each mount location)`
 
- Edit fstab
- 'sudo nano /etc/fstab'
+ **Edit fstab**
+ `sudo nano /etc/fstab`
  and connect the mounts to your shares by inputting this line in the fstab.
- '//{share ip}/{sharen name} /mnt/{directory} cifs credentials=/root/smbcredentials,uid=1000,gid=1000,noauto,x-systemd.automount 0 0'
+ ```
+ //{share ip}/{sharen name} /mnt/{directory} cifs credentials=/root/smbcredentials,uid=1000,gid=1000,noauto,x-systemd.automount 0 0
+ ```
  you will need to do this for each drive location. In my instance i only use one and it is /mnt/media.
 
- Create credentials file
- 'sudo nano /root/smbcredentials'
+ **Create credentials file**
+ `sudo nano /root/smbcredentials`
  Paste in the following
- "user={username}
- password={password}'
+ ```
+ user={username}
+ password={password}
+ ```
 
- Lastly mount all drives and reboot
- 'sudo mount -a'
- 'reboot'
+ **Lastly mount all drives and reboot**
+ `sudo mount -a`
+ `reboot`
 
 
  ### Install  Portainer
