@@ -66,8 +66,8 @@ For refrence, my setup sort of looks like this at a high level
  dns-domain sweet.home
  dns-nameservers 192.168.2.254 1.1.1.1 8.8.8.8
  ``` 
+ save and reboot.<br>
  
- save and reboot.
  **Instal Docker and Portainer**<br>
  `sudo spt install curl -y`<br>
  `curl -fsSL https://get.docker.com -o get-docker.sh`<br>
