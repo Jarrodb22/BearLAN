@@ -17,18 +17,18 @@ For refrence, my setup sort of looks like this at a high level
 
 ![Media Stack](build/images/media%20stack.png)
  ### Setup OS
- **Login as root**
+ **Login as root**<br>
  `apt update && apt upgrade -y`
  `apt install sudo -y`
  Logout
  
- **Login as user and install cifs**
+ **Login as user and install cifs**<br>
  `sudo apt install cifs-utils`
 
- **Make directory for mount**
+ **Make directory for mount**<br>
  `sudo mkdir /mnt/{directory} (repeat for each mount location)`
 
- **Edit fstab**
+ **Edit fstab**<br>
  `sudo nano /etc/fstab`
  and connect the mounts to your shares by inputting this line in the fstab.
  ```
@@ -36,7 +36,7 @@ For refrence, my setup sort of looks like this at a high level
  ```
  you will need to do this for each drive location. In my instance i only use one and it is /mnt/media.
 
- **Create credentials file**
+ **Create credentials file**<br>
  `sudo nano /root/smbcredentials`
  Paste in the following
  ```
@@ -44,7 +44,7 @@ For refrence, my setup sort of looks like this at a high level
  password={password}
  ```
 
- **Lastly mount all drives and reboot**
+ **Lastly mount all drives and reboot**<br>
  `sudo mount -a`
  `reboot`
 
