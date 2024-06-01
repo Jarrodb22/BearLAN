@@ -11,13 +11,10 @@ List of all apps included in this project with info related to it.
 |App Title|Stack|Archetechture|Official<br>Doc|Bearlan<br>Doc|Install Script|Youtube Video|
 |:--------|:---:|:---:|:-------------:|:-------------:|:------------:|:-----------:|
 |[Gluetun](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client)|Media Server|AMD64| [![](../build/images/docs_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
-<<<<<<< HEAD
 |[Socks-5](https://github.com/serjs/socks5-server)|Media Server|AMD64| [![](../build/images/docs_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
 |[Deluge](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client)|Media Server|AMD64| [![](../build/images/docs_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
-=======
 |[Socks-5](https://github.com/serjs/socks5-server)|Media Server|AMD64| [![](../build/images/blue_doc_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
 |[Deluge](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client)|Media Server|AMD64| [![](../build/images/blue_doc_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
->>>>>>> 10c47a33693060a868593bc64ce1af80fd7c964c
 |[Jellyfin](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client)|Media Server|AMD64| [![](../build/images/blue_doc_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
 |[JellySeer](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client)|Media Server|AMD64| [![](../build/images/docs_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
 |[Radarr](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client)|Media Server|AMD64| [![](../build/images/docs_icon.png)](https://github.com/qdm12/gluetun?tab=readme-ov-file#gluetun-vpn-client) |  |  |  |
