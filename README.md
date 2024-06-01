@@ -8,7 +8,7 @@ I've included for you a template of a few stacks, each stack contains multiple c
 ![App List](build/images/apps.png)
 
 ## Apps List
-[Here](/App-Catalog.md) you can see the list of apps, what stack I have them in, and some key links to doccumentation so you can edit the variables easily. I would recomend the network stack and media server being hosted on seprate host (or VMs). I think it works best when each stack gets their own dedicated IP to work with. If you follow with my [youtube series](www.youtube.com) you can see start to finish how ive architechted my server including my file shares and permissions. Both of which I would say are essential for the media server stack.
+[Here](/docs/App-Catalog.md) you can see the list of apps, what stack I have them in, and some key links to doccumentation so you can edit the variables easily. I would recomend the network stack and media server being hosted on seprate host (or VMs). I think it works best when each stack gets their own dedicated IP to work with. If you follow with my [youtube series](www.youtube.com) you can see start to finish how ive architechted my server including my file shares and permissions. Both of which I would say are essential for the media server stack.
 
 ## Instalation Steps
 For the setup, im going to assume that you already have some sort of hypervisor or base os installed on your hardware as well as some form of network attached storage. Its not essential and all of the services will work just fine when installed on your local storage if that is how you have it archetechted.
@@ -81,8 +81,15 @@ For refrence, my setup sort of looks like this at a high level
  `docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest`
 
  **login to web ui**<br>
- {host ip}:9443
+ {host ip}:9443 then login
  ### Add Template
+ Login to the UI, click Settings (bottom-left corner), and paste the BearLAN Template link from below into the "App Templates" box.
+
+ |Architechture|OS|Link|
+ |:-----:|:----:|:-------------:|
+ |AMD64|Debian|https://youtube.com
+
+ You're done! Now just click App Templates and deploy applications!
  
 ## ARM32 support
 ARM32 support is being dropped, for that reason, i do not have any environment in my home lab using it and this repo is only tested to support AMD64.
@@ -93,4 +100,4 @@ ARM32 support is being dropped, for that reason, i do not have any environment i
 |No.1| [![](/build/images/ytlogo.png)](https://youtube.com) | Testing: First Video | [![](build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
 
 ## Acknowledgment
-- template is inspired by the work from [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) Portainer App Template branch in May 2024
+- Template is inspired by the work from [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) Portainer App Template branch in May 2024
