@@ -2,7 +2,9 @@
 Repository for tutorials showing how to create home servers for fun using docker and portainer. I originally set up mine using the [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) repo by [Novaspirit](https://www.youtube.com/channel/UCrjKdwxaQMSV_NDywgKXVmw) who both has a great repo and an amaziing youtube series following allong. The area where this mainly differs is that i have created stacks complete with config with multiple containers to quickly spin up applications preset with variables. This repository is best when used in conjuntion with my [youtube series](www.youtube.com) explaining the full architecture of my home lab.
 
 ## App Template
-I've included for you a template of a few stacks, each stack contains multiple containers that I use for various uses, the vision is to have a one-click creation of a media server, core network tools, and general apps that I use in my home lab. Additionally, I wanted to include the option to edit the docker-compose.yml to choose what apps are included in the stack and easily change the environmental variables to match your home network settings.
+I've included for you a template of a few stacks, each stack contains multiple containers that I use for various uses, the vision is to have a one-click creation of a media server eventually, core network tools, and general apps that I use in my home lab. Additionally, I wanted to include the option to edit the docker-compose.yml to choose what apps are included in the stack and easily change the environmental variables to match your home network settings.
+
+I like to edit the compose and config files in vscode through ssh connection. it really makes the process much easier in setup and imagining the file structure. I have tried to recreate my file structure within this repo in order to see in the compose files why ive decided to map the volumes the way i have. Also there is sort of an order of operaions for best results, following the youtube guide I will try to do things in order so it works best when you follow along.
 
 ![App List](build/images/apps.png)
 
@@ -76,18 +78,16 @@ For refrence, my setup sort of looks like this at a high level
  **Add user to docker**<br>
  `sudo usermod -aG docker {user}`
 
- **Create Directories**<br>
- `sudo mkdir apps`<br>
- `cd /apps`<br>
- `mkdir portainer`<br>
-
- (you will want to create a new folder for each app or you can follow this guide to install my repository.)
-
-
  ### Add Template
- 
 
- |Architechture|OS|Link|
+**Create Directories**<br>
+ `git clone <repository-url> <target-directory>`<br>
+ `cd /apps`<br>
+
+ (you can take the whole directory, or just specific apps its basically premade docker-compose files and config.yml in some cases)<br>
+ 
+**Template Links**<br>
+ |Architechture|OS|Repository URL|
  |:-----:|:----:|:-------------:|
  |AMD64|Debian|https://youtube.com
 
