@@ -6,7 +6,7 @@ services:
     image: qmcgaw/gluetun
     cap_add:
       - NET_ADMIN
-     ports:
+    ports:
       - 1080:1080/tcp # Socks-5
       - 8112:8112/tcp # Deluge
     volumes:
