@@ -5,7 +5,7 @@ services:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
-      - ./config:/config
+      - ./homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     privileged: true
@@ -17,7 +17,7 @@ services:
       - "traefik.http.routers.homeassistant.entrypoints=insecure"
       - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.$DOMAIN`)"
       - "traefik.http.services.homeassistant.loadbalancer.server.port=8123"
-      # - "traefik.http.routers.homeassistant.tls.certresolver=le"
+      - "traefik.http.routers.homeassistant.tls.certresolver=le"
 
 networks:
 #Traefik Network
