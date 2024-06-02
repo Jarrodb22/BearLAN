@@ -13,7 +13,7 @@ services:
     image: weejewel/wg-easy
     container_name: wg-easy
     volumes:
-      - /portainer/wireguard/config:/etc/wireguard
+      - ./config:/etc/wireguard
     ports:
       - "563:51820/udp" #you will need to port forward port 563 on your router, you could also try 123/udp and 51820/udp if you have trouble
       - "51821:51821/tcp"

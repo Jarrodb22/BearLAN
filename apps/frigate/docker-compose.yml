@@ -15,7 +15,7 @@ services:
       - /dev/dri/renderD128:/dev/dri/renderD128 # For intel hwaccel, needs to be updated for your hardware
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./frigate/config:/config
+      - ./config:/config
       - /mnt/media/frigate:/media/frigate
       - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
         target: /tmp/cache
@@ -37,7 +37,7 @@ services:
       - "1883:1883" #default mqtt port
       - "9001:9001" #default mqtt port for websockets
     volumes:
-      - ./frigate/mqtt:/mosquitto/config:rw
-      - ./frigate/mqtt:/mosquitto/data:rw
-      - ./frigate/mqtt:/mosquitto/log:rw
+      - ./mqtt:/mosquitto/config:rw
+      - ./mqtt:/mosquitto/data:rw
+      - ./mqtt:/mosquitto/log:rw
     restart: unless-stopped

@@ -1,7 +1,6 @@
 # Home-LAN-Fun
 Repository for tutorials showing how to create home servers for fun using docker and portainer. I originally set up mine using the [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) repo by [Novaspirit](https://www.youtube.com/channel/UCrjKdwxaQMSV_NDywgKXVmw) who both has a great repo and an amaziing youtube series following allong. The area where this mainly differs is that i have created stacks complete with config with multiple containers to quickly spin up applications preset with variables. This repository is best when used in conjuntion with my [youtube series](www.youtube.com) explaining the full architecture of my home lab.
 
-
 ## App Template
 I've included for you a template of a few stacks, each stack contains multiple containers that I use for various uses, the vision is to have a one-click creation of a media server, core network tools, and general apps that I use in my home lab. Additionally, I wanted to include the option to edit the docker-compose.yml to choose what apps are included in the stack and easily change the environmental variables to match your home network settings.
 
@@ -23,7 +22,7 @@ For refrence, my setup sort of looks like this at a high level
  `apt update && apt upgrade -y`
  `apt install sudo -y`<br>
  Logout
- 
+
  **Login as user and install cifs**<br>
  `sudo apt install cifs-utils`
 
@@ -49,9 +48,10 @@ For refrence, my setup sort of looks like this at a high level
  **Lastly mount all drives and reboot**<br>
  `sudo mount -a`
  `reboot`<br>
-
- ### Install  Portainer
- Again, just a little extra bit of ssetup i like to do befor moving onto the portainer install is to set my network configuration to my liking.
+ ### Setup SSH with VS Code
+ 
+ ### Install Docker
+ Again, just a little extra bit of setup i like to do befor moving onto the portainer install is to set my network configuration to my liking.
 
  **Edit interfaces**<br>
  `sudo nano /etc/network/interfaces`<br>
@@ -68,7 +68,7 @@ For refrence, my setup sort of looks like this at a high level
  ``` 
  save and reboot.<br>
 
- **Instal Docker and Portainer**<br>
+ **Docker Setup**<br>
  `sudo spt install curl -y`<br>
  `curl -fsSL https://get.docker.com -o get-docker.sh`<br>
  `sudo sh get-docker.sh`<br>
@@ -76,14 +76,16 @@ For refrence, my setup sort of looks like this at a high level
  **Add user to docker**<br>
  `sudo usermod -aG docker {user}`
 
- **Install Portainer**<br>
- `docker volume create portainer_data`<br>
- `docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest`
+ **Create Directories**<br>
+ `sudo mkdir apps`<br>
+ `cd /apps`<br>
+ `mkdir portainer`<br>
 
- **login to web ui**<br>
- {host ip}:9443 then login
+ (you will want to create a new folder for each app or you can follow this guide to install my repository.)
+
+
  ### Add Template
- Login to the UI, click Settings (bottom-left corner), and paste the BearLAN Template link from below into the "App Templates" box.
+ 
 
  |Architechture|OS|Link|
  |:-----:|:----:|:-------------:|
@@ -96,8 +98,13 @@ ARM32 support is being dropped, for that reason, i do not have any environment i
 
 ## Youtube Series
 |Episode|Video Link|Title|Docs Link|
-|:---|:---:|:-------------:|:---:|
-|No.1| [![](/build/images/ytlogo.png)](https://youtube.com) | Testing: First Video | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|:---|:---:|:------------------------------:|:---:|
+|No.1| [![](/build/images/ytlogo.png)](https://youtube.com) | Install Proxmox, Setup TrueNAS shares and permissions | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|No.2| [![](/build/images/ytlogo.png)](https://youtube.com) | Buid VMS, Setup OS and Install Docker | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|No.3| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup Adguard and Traefik | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|No.5| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup gluetun vpn and media server | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|No.6| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup Frigate NVR and Homeassistant | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|No.7| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup wireguard VPN server | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
 
 ## Acknowledgment
 - Template is inspired by the work from [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) Portainer App Template branch in May 2024
