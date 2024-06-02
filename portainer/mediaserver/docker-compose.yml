@@ -22,7 +22,8 @@ services:
   deluge:
     image: lscr.io/linuxserver/deluge:latest
     container_name: deluge
-    networks: gluetun_1
+    networks: 
+      - gluetun_1
     environment:
       - PUID=1000
       - PGID=1000
@@ -43,9 +44,17 @@ services:
       - TZ=America/Chicago
     volumes:
       - /portainer/prowlarr/config:/config
+    networks:
+     - traefik-proxy
     ports:
-      - 9696:9696
+      # - 9696:9696
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adguardhome.entrypoints=insecure"
+      - "traefik.http.routers.adguardhome.rule=Host(`prowlarr.$DOMAIN`)"
+      - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
+      # - "traefik.http.routers.adguardhome.tls.certresolver=le"
 
 #Radarr movie library manager  
   radarr:
@@ -59,9 +68,17 @@ services:
       - /portainer/radarr/config:/config
       - /mnt/media/movies:/movies #optional
       - /mnt/media/downloads:/downloads #optional
+    networks:
+     - traefik-proxy
     ports:
-      - 7878:7878
+      # - 7878:7878
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adguardhome.entrypoints=insecure"
+      - "traefik.http.routers.adguardhome.rule=Host(`radarr.$DOMAIN`)"
+      - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
+      # - "traefik.http.routers.adguardhome.tls.certresolver=le"
 
 #Sonarr tv show library manager
   sonarr:
@@ -75,9 +92,17 @@ services:
       - /portainer/sonarr/config:/config
       - /mnt/media/tv:/tv #optional
       - /mnt/media/downloads:/downloads #optional
+    networks:
+     - traefik-proxy
     ports:
-      - 8989:8989
+      # - 8989:8989
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adguardhome.entrypoints=insecure"
+      - "traefik.http.routers.adguardhome.rule=Host(`sonarr.$DOMAIN`)"
+      - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
+      # - "traefik.http.routers.adguardhome.tls.certresolver=le"
 
 #Jellyfin hosted media player and user interface
   jellyfin:
@@ -91,10 +116,18 @@ services:
       - /portainer/jellyfin/config:/config
       - /mnt/media/tv:/data/tvshows
       - /mnt/media/movies:/data/movies
+    networks:
+     - traefik-proxy
     ports:
-      - 8096:8096
-      - 8920:8920 #optional
+      # - 8096:8096
+      # - 8920:8920 #optional
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adguardhome.entrypoints=insecure"
+      - "traefik.http.routers.adguardhome.rule=Host(`jellfin.$DOMAIN`)"
+      - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
+      # - "traefik.http.routers.adguardhome.tls.certresolver=le"
 
 #Jellyseer avaliable media request and display 
   jellyseer:
@@ -106,9 +139,18 @@ services:
       - TZ=America/Chicago
     volumes:
       - /portainer/jellyseer/config:/config
+    networks:
+     - traefik-proxy
     ports:
-      - 5055:5055
+      # - 5055:5055
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adguardhome.entrypoints=insecure"
+      - "traefik.http.routers.adguardhome.rule=Host(`jellyseer.$DOMAIN`)"
+      - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
+      # - "traefik.http.routers.adguardhome.tls.certresolver=le"
+
 
 #Flaresolver proxy for prowlarr 
   flaresolverr:
@@ -119,11 +161,21 @@ services:
       - LOG_HTML=LOG_HTML:-false
       - CAPTCHA_SOLVER=CAPTCHA_SOLVER:-none
       - TZ=America/Chicago
+    networks:
+     - traefik-proxy
     ports:
-      - 8191:8191
+      # - 8191:8191
     restart: unless-stopped
 
-# networks:
-#     default:
-#         external:
-#             name: $DEFAULT_NETWORK
+networks:
+#Gluetun Network
+  gluetun_1:
+    external: false
+    driver: container
+    driver_opts: gluetun
+#Traefik Network
+  traefik-proxy:
+    external: true
+
+
+             

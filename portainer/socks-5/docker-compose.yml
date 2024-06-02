@@ -1,0 +1,17 @@
+Version: '1'
+
+services:
+#Socks5 HTTPS Proxy
+  socks5:
+    restart: always
+    image: serjs/go-socks5-proxy
+    env_file: .env
+    networks:
+      - gluetun_1
+
+networks:
+#Gluetun Network
+  gluetun_1:
+    external: false
+    driver: container
+    driver_opts: gluetun
