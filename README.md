@@ -88,8 +88,8 @@ For refrence, my setup sort of looks like this at a high level
  
 **Template Links**<br>
  |Architechture|OS|Repository URL|
- |:-----:|:----:|:-------------:|
- |AMD64|Debian|https://youtube.com
+ |:-----:|:----:|:-----------------:|
+ |AMD64|Debian|https://github.com/Jarrodb22/BearLAN/tree/main/apps|
 
  You're done! Now just click App Templates and deploy applications!
  
@@ -98,13 +98,13 @@ ARM32 support is being dropped, for that reason, i do not have any environment i
 
 ## Youtube Series
 |Episode|Video Link|Title|Docs Link|
-|:---|:---:|:------------------------------:|:---:|
-|No.1| [![](/build/images/ytlogo.png)](https://youtube.com) | Install Proxmox, Setup TrueNAS shares and permissions | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
-|No.2| [![](/build/images/ytlogo.png)](https://youtube.com) | Buid VMS, Setup OS and Install Docker | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
-|No.3| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup Adguard and Traefik | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
-|No.5| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup gluetun vpn and media server | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
-|No.6| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup Frigate NVR and Homeassistant | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
-|No.7| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup wireguard VPN server | [![](../build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|:---|:---:|:------------------------------:|:--------:|
+|No.1| [![](/build/images/ytlogo.png)](https://youtube.com) | Install Proxmox, Setup TrueNAS shares and permissions | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|No.2| [![](/build/images/ytlogo.png)](https://youtube.com) | Buid VMS, Setup OS and Install Docker | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|No.3| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup Adguard and Traefik | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|No.5| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup gluetun vpn and media server | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|No.6| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup Frigate NVR and Homeassistant | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|No.7| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup wireguard VPN server | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
 
 ## Acknowledgment
 - Template is inspired by the work from [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) Portainer App Template branch in May 2024
