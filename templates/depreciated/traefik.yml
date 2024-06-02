@@ -1,0 +1,27 @@
+Version: '1'
+
+services:
+#Traefik Edge Router that makes publishing your services a fun and easy experience
+  traefik:
+    image: "traefik:v3.0"
+    container_name: "traefik"
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.web.address=:80"
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+      - "8080:8080/tcp"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+  whoami:
+    image: "traefik/whoami"
+    container_name: "simple-service"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+      - "traefik.http.routers.whoami.entrypoints=web"

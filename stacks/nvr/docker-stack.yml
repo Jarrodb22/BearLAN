@@ -63,4 +63,8 @@ services:
       - ./data:/mosquitto/data:rw
       - ./log:/mosquitto/log:rw
     restart: unless-stopped
- 
+
+# networks:
+#     default:
+#         external:
+#             name: $DEFAULT_NETWORK

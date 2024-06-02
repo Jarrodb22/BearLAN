@@ -2,7 +2,7 @@ Version: '1'
 
 services:
 
-# wireguard VPN server
+#wireguard VPN server
   wireguard:
     environment:
       - WG_HOST= #Your Public IP
@@ -15,7 +15,7 @@ services:
     volumes:
       - /portainer/wireguard/config:/etc/wireguard
     ports:
-      - "563:51820/udp" # you will need to port forward port 563 on your router, you could also try 123/udp and 51820/udp if you have trouble
+      - "563:51820/udp" #you will need to port forward port 563 on your router, you could also try 123/udp and 51820/udp if you have trouble
       - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
@@ -25,43 +25,41 @@ services:
       - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
 
-# PI Hole DNS sinkhole that protects devices from unwanted content
-  pihole:
-    container_name: pihole
-    image: pihole/pihole:latest
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "80:80/tcp"
-    environment:
-      TZ: 'America/Chicago'
-      WEBPASSWORD: #'{Secure password else random}'
+#ADguard Home DNS sinkhole that protects devices from unwanted content
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
     volumes:
-      - /portainer/pihole/config:/etc/pihole
-      - /portainer/pihole/config:/etc/dnsmasq.d'
+      - /portainer/adguard/conf:/opt/adguardhome/conf
+      - /portainer/adguard/opt:/opt/adguardhome/work
+    ports:
+      # # DNS
+      - 53:53/tcp
+      - 53:53/udp
+      # # DHCP server
+      # - 67:67/udp
+      # - 68:68/udp
+      # # HTTPS/DNS-over-HTTPS
+      - 443:443/tcp
+      # # DNS-over-TLS
+      - 853:853/tcp
+      # # DNS-over-QUIC
+      - 853:853/udp
+      # # DNSCrypt
+      - 5443:5443/tcp
+      - 5443:5443/udp
+      # WebUI
+      - 3000:3000/tcp
     restart: unless-stopped
-
-#Traefik Edge Router that makes publishing your services a fun and easy experience
-  traefik:
-    image: "traefik:v3.0"
-    container_name: "traefik"
-    command:
-      - "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entryPoints.web.address=:80"
-    ports:
-      - "80:80/tcp"
-      - "443:443/tcp"
-      - "8080:8080/tcp"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-
-  whoami:
-    image: "traefik/whoami"
-    container_name: "simple-service"
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
+      # - "traefik.enable=true"
+      # - "traefik.http.routers.adguardhome.entrypoints=insecure"
+      # - "traefik.http.routers.adguardhome.rule=Host(`adguard.$DOMAIN`)"
+      # - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
+      # - "traefik.http.routers.adguardhome.tls.certresolver=le"
+
+# networks:
+#     default:
+#         external:
+#             name: $DEFAULT_NETWORK
+
