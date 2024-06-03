@@ -57,8 +57,8 @@ For refrence, my setup sort of looks like this at a high level
 
  To setup launch the remote ssh config file and paste in your host(s) using this format
  ```
-Host 10.0.0.0
-    User username
+Host {Host IP}
+    User {username}
     Port 22
 ```
  
