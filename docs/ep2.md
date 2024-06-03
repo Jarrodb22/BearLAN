@@ -15,7 +15,7 @@
 - use general and mostly default settings
 - edit ACL groups
 
-## edit permissions 
+## Edit permissions 
 - add user group as owner
 - add granular permissions for each user
 
