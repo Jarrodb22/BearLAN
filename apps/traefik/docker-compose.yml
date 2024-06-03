@@ -21,8 +21,8 @@ services:
       - 853:853
     environment:
       # CF_DNS_API_TOKEN_FILE: /run/secrets/cf_api_token
-      CF_DNS_API_TOKEN: ${TOKEN} # if using .env
-      TRAEFIK_DASHBOARD_CREDENTIALS: ${Credentials}
+      CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN} # if using .env
+      TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
     env_file: .env
     volumes:
       # So container has local time
