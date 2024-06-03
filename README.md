@@ -50,7 +50,17 @@ For refrence, my setup sort of looks like this at a high level
  **Lastly mount all drives and reboot**<br>
  `sudo mount -a`
  `reboot`<br>
+ 
  ### Setup SSH with VS Code
+ On your dev machine install VS Code, if you havent already, then i think its helpful to add the extentions for docker compose and remote SSH. With this you should have the ability to do most of the editiing from within the vscode app and with the docker extentions it 
+ will actually show you which directories have running containers.
+
+ To setup launch the remote ssh config file and paste in your host(s) using this format
+ ```
+Host 10.0.0.0
+    User username
+    Port 22
+```
  
  ### Install Docker
  Again, just a little extra bit of setup i like to do befor moving onto the portainer install is to set my network configuration to my liking.
