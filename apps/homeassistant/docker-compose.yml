@@ -14,10 +14,10 @@ services:
     network_mode: host
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.homeassistant.entrypoints=insecure"
-      - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.$DOMAIN`)"
-      - "traefik.http.services.homeassistant.loadbalancer.server.port=8123"
-      - "traefik.http.routers.homeassistant.tls.certresolver=le"
+      - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.example.com`)"
+      - "traefik.http.routers.homeassistant.entrypoints=https"
+      - "traefik.http.routers.homeassistant.tls=true"
+      - "traefik.http.services.homeassistant.loadbalancer.server.port=8113"
 
 networks:
 #Traefik Network

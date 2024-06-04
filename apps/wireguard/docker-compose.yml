@@ -6,8 +6,8 @@ services:
   wireguard:
     environment:
       - WG_HOST= #Your Public IP
-      - PASSWORD=${PASSWORD}
-      - WG_PORT=563
+      - PASSWORD= #PASSWORD
+      - WG_PORT=51820
       - WG_DEFAULT_DNS=1.1.1.1
       - WG_ALLOWED_IPS=192.168.0.0/24,10.0.1.0/24 #replace with your home network ip prange 
     image: weejewel/wg-easy
@@ -15,7 +15,7 @@ services:
     volumes:
       - ./config:/etc/wireguard
     ports:
-      - "563:51820/udp" #you will need to port forward port 563 on your router, you could also try 123/udp and 51820/udp if you have trouble
+      - "51820:51820/udp" #you will need to port forward port 51820 on your router, you could also try 123/udp and 563/udp if you have trouble
       - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:

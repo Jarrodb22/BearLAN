@@ -15,6 +15,12 @@ services:
       - /portainer/deluge/config:/config
       - /mnt/media/downloads:/downloads
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.deluge.rule=Host(`deluge.example.com`)"
+      - "traefik.http.routers.deluge.entrypoints=https"
+      - "traefik.http.routers.deluge.tls=true"
+      - "traefik.http.services.deluge.loadbalancer.server.port=8112"
 
 #Prolwarr torrent indexer  
   prowlarr:
@@ -33,10 +39,10 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adguardhome.entrypoints=insecure"
-      - "traefik.http.routers.adguardhome.rule=Host(`prowlarr.$DOMAIN`)"
-      - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
-      # - "traefik.http.routers.adguardhome.tls.certresolver=le"
+      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.example.com`)"
+      - "traefik.http.routers.prowlarr.entrypoints=https"
+      - "traefik.http.routers.prowlarr.tls=true"
+      - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
 
 #Radarr movie library manager  
   radarr:
@@ -57,10 +63,10 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adguardhome.entrypoints=insecure"
-      - "traefik.http.routers.adguardhome.rule=Host(`radarr.$DOMAIN`)"
-      - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
-      # - "traefik.http.routers.adguardhome.tls.certresolver=le"
+      - "traefik.http.routers.radarr.rule=Host(`radarr.example.com`)"
+      - "traefik.http.routers.radarr.entrypoints=https"
+      - "traefik.http.routers.radarr.tls=true"
+      - "traefik.http.services.radarr.loadbalancer.server.port=7878"
 
 #Sonarr tv show library manager
   sonarr:
@@ -81,10 +87,10 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adguardhome.entrypoints=insecure"
-      - "traefik.http.routers.adguardhome.rule=Host(`sonarr.$DOMAIN`)"
-      - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
-      # - "traefik.http.routers.adguardhome.tls.certresolver=le"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.example.com`)"
+      - "traefik.http.routers.sonarr.entrypoints=https"
+      - "traefik.http.routers.sonarr.tls=true"
+      - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
 
 #Jellyfin hosted media player and user interface
   jellyfin:
@@ -106,10 +112,10 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adguardhome.entrypoints=insecure"
-      - "traefik.http.routers.adguardhome.rule=Host(`jellfin.$DOMAIN`)"
-      - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
-      # - "traefik.http.routers.adguardhome.tls.certresolver=le"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.example.com`)"
+      - "traefik.http.routers.jellyfin.entrypoints=https"
+      - "traefik.http.routers.jellyfin.tls=true"
+      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
 
 #Jellyseer avaliable media request and display 
   jellyseer:
@@ -128,10 +134,10 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adguardhome.entrypoints=insecure"
-      - "traefik.http.routers.adguardhome.rule=Host(`jellyseer.$DOMAIN`)"
-      - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
-      # - "traefik.http.routers.adguardhome.tls.certresolver=le"
+      - "traefik.http.routers.jellyseer.rule=Host(`jellyseer.example.com`)"
+      - "traefik.http.routers.jellyseer.entrypoints=https"
+      - "traefik.http.routers.jellyseer.tls=true"
+      - "traefik.http.services.jellyseer.loadbalancer.server.port=5055"
 
 #Flaresolver proxy for prowlarr 
   flaresolverr:
@@ -147,19 +153,12 @@ services:
     ports:
       # - 8191:8191
     restart: unless-stopped
-
-#Unpackerr file manager to clean up ugly files
-  unpackerr:
-    image: golift/unpackerr
-    container_name: unpackerr
-    volumes:
-      - /mnt/media/downloads:/downloads
-    restart: always
-    user: 1000:1000
-    env_file: /unpackerr/.env
-    environment:
-      - TZ=America/Chicago
-      # Sonarr Config
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.flaresolverr.rule=Host(`flaresolverr.example.com`)"
+      - "traefik.http.routers.flaresolverr.entrypoints=https"
+      - "traefik.http.routers.flaresolverr.tls=true"
+      - "traefik.http.services.flaresolverr.loadbalancer.server.port=8191"
 
 networks:
 #Traefik Network

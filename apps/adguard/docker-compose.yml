@@ -7,7 +7,7 @@ services:
     container_name: adguardhome
     volumes:
       - ./config:/opt/adguardhome/conf
-      - ./config:/opt/adguardhome/work
+      - ./work:/opt/adguardhome/work
     networks:
       - macnet16
     ports:
@@ -31,10 +31,10 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adguardhome.entrypoints=insecure"
-      - "traefik.http.routers.adguardhome.rule=Host(`adguard.$DOMAIN`)"
+      - "traefik.http.routers.adguardhome.rule=Host(`adguard.example.com`)"
+      - "traefik.http.routers.adguardhome.entrypoints=https"
+      - "traefik.http.routers.adguardhome.tls=true"
       - "traefik.http.services.adguardhome.loadbalancer.server.port=3000"
-      - "traefik.http.routers.adguardhome.tls.certresolver=le"
 
 networks:
 #enable for setup
