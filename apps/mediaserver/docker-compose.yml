@@ -12,7 +12,7 @@ services:
       - TZ=Etc/UTC
       - DELUGE_LOGLEVEL=error #optional
     volumes:
-      - /portainer/deluge/config:/config
+      - ./config:/config
       - /mnt/media/downloads:/downloads
     restart: unless-stopped
     labels:
