@@ -24,11 +24,11 @@ List of all apps included in this project with info related to it.
 
 |App Title|Stack|Archetechture|Official<br>Doc|Bearlan<br>Doc|Install Script|Youtube Video|
 |:--------|:---:|:---:|:-------------:|:-------------:|:------------:|:-----------:|
-|[Adguard](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](../build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
+|[Adguard](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](../build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) | [![](../build/images/bearlan.png)](./ep4.md) |  |  |
 |[Gluetun](https://github.com/qdm12/gluetun)|Media Server|AMD64| [![](../build/images/docs_icon.png)](https://github.com/qdm12/gluetun/blob/master/README.md) |  |  |  |
 |[Socks-5](https://github.com/serjs/socks5-server)|Core Network|AMD64| [![](../build/images/docs_icon.png)](https://github.com/serjs/socks5-server/blob/master/README.md) |  |  |  |
 |[Speedtest Tracker](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](../build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
-|[Traefik](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](../build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
+|[Traefik](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](../build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) | [![](../build/images/bearlan.png)](./ep4.md) |  |  |
 |[Wireguard](https://github.com/airsonic-advanced/airsonic-advanced)|Core Network|AMD64| [![](../build/images/docs_icon.png)](https://github.com/linuxserver/docker-airsonic-advanced) |  |  |  |
 
 

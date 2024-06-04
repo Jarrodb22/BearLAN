@@ -1,15 +1,15 @@
 # Home-LAN-Fun
-Repository for tutorials showing how to create home servers for fun using docker and portainer. I originally set up mine using the [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) repo by [Novaspirit](https://www.youtube.com/channel/UCrjKdwxaQMSV_NDywgKXVmw) who both has a great repo and an amaziing youtube series following allong. The area where this mainly differs is that i have created stacks complete with config with multiple containers to quickly spin up applications preset with variables. This repository is best when used in conjuntion with my [youtube series](www.youtube.com) explaining the full architecture of my home lab.
+Repository for tutorials showing how to create home servers for fun using docker, having all of my services on a local dns with authurized certs from let's encrypt. I originally set up my lab using the [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) repo by [Novaspirit](https://www.youtube.com/channel/UCrjKdwxaQMSV_NDywgKXVmw) who both has a great repo and an amaziing youtube series following allong. The reason I have created ths is so i can easily have docker compose complete with config for multiple containers to quickly spin up applications preset with variables and proper file structure without using portainer. This repository is best when used in conjuntion with my [youtube series](www.youtube.com) explaining the full architecture of my home lab and edited from VS Code.
 
 ## App Template
-I've included for you a template of a few stacks, each stack contains multiple containers that I use for various uses, the vision is to have a one-click creation of a media server eventually, core network tools, and general apps that I use in my home lab. Additionally, I wanted to include the option to edit the docker-compose.yml to choose what apps are included in the stack and easily change the environmental variables to match your home network settings.
+I've included for you a template of a few stacks, each stack contains one or a few containers that I use for various uses, the vision is to have a simple way to spin up a bunch of media services, core network tools, and general apps that I use in my home lab. Additionally, I wanted to include the option to edit the docker-compose.yml and manage everything from docker compose to easily see the file stucture and edit the stacks to match your environmental and network settings.
 
-I like to edit the compose and config files in vscode through ssh connection. it really makes the process much easier in setup and imagining the file structure. I have tried to recreate my file structure within this repo in order to see in the compose files why ive decided to map the volumes the way i have. Also there is sort of an order of operaions for best results, following the youtube guide I will try to do things in order so it works best when you follow along.
+I like to edit the compose and config files in vscode through ssh connection. it really makes the process much easier in setup and imagining the file structure. I have tried to recreate my file structure within this repo in order to see in the compose files why ive decided to map the volumes the way I have. Also there is sort of an order of operaions for best results, following the youtube guide I will try to do things in order so it works best when you follow along. If you dont want to watch you can see the series over view to get an idea. I will also include documentation for each episode to follow along with
 
 ![App List](build/images/apps.png)
 
 ## Apps List
-[Here](/docs/App-Catalog.md) you can see the list of apps, what stack I have them in, and some key links to doccumentation so you can edit the variables easily. I would recomend the network stack and media server being hosted on seprate host (or VMs). I think it works best when each stack gets their own dedicated IP to work with. If you follow with my [youtube series](www.youtube.com) you can see start to finish how ive architechted my server including my file shares and permissions. Both of which I would say are essential for the media server stack.
+[Here](/docs/App-Catalog.md) you can see the list of apps, how I categorize them, and some key links to doccumentation so you can edit the variables easily. I would recomend to host them all on the same machine if possible. For some i think its best (or easiest) when you use a macvlan. If you follow with my [youtube series](www.youtube.com) you can see start to finish how ive architechted my server including my file shares and permissions. Both of which I would say are essential for the media server portion.
 
 ## Instalation Steps
 For the setup, im going to assume that you already have some sort of hypervisor or base os installed on your hardware as well as some form of network attached storage. Its not essential and all of the services will work just fine when installed on your local storage if that is how you have it archetechted.
@@ -43,14 +43,24 @@ For refrence, my setup sort of looks like this at a high level
  `sudo nano /root/smbcredentials`<br>
  paste in the following
  ```
- user={username}
- password={password}
+ user=#username
+ password=#password
  ```
 
  **Lastly mount all drives and reboot**<br>
  `sudo mount -a`
  `reboot`<br>
+ 
  ### Setup SSH with VS Code
+ On your dev machine install VS Code, if you havent already, then i think its helpful to add the extentions for docker compose and remote SSH. With this you should have the ability to do most of the editiing from within the vscode app and with the docker extentions it 
+ will actually show you which directories have running containers.
+
+ To setup launch the remote ssh config file and paste in your host(s) using this format
+ ```
+Host {Host IP}
+    User {username}
+    Port 22
+```
  
  ### Install Docker
  Again, just a little extra bit of setup i like to do befor moving onto the portainer install is to set my network configuration to my liking.
@@ -65,7 +75,6 @@ For refrence, my setup sort of looks like this at a high level
  address 192.168.2.236
  netmask 255.255.255.0
  gateway 192.168.2.254
- dns-domain sweet.home
  dns-nameservers 192.168.2.254 1.1.1.1 8.8.8.8
  ``` 
  save and reboot.<br>
@@ -82,14 +91,14 @@ For refrence, my setup sort of looks like this at a high level
 
 **Create Directories**<br>
  `git clone <repository-url> <target-directory>`<br>
- `cd /apps`<br>
+ `cd /docker`<br>
 
- (you can take the whole directory, or just specific apps its basically premade docker-compose files and config.yml in some cases)<br>
+ (You will get the whole directory, but this is ultimately like other templates, you just import the file structure premade. I think its better this way because i like to operate from VS CODE which I find to be better than portainer, however you can install portainer just as well)<br>
  
 **Template Links**<br>
  |Architechture|OS|Repository URL|
  |:-----:|:----:|:-----------------:|
- |AMD64|Debian|https://github.com/Jarrodb22/BearLAN/tree/main/apps|
+ |AMD64|Debian|https://github.com/Jarrodb22/docker/tree/main|
 
  You're done! Now just click App Templates and deploy applications!
  
@@ -98,13 +107,14 @@ ARM32 support is being dropped, for that reason, i do not have any environment i
 
 ## Youtube Series
 |Episode|Video Link|Title|Docs Link|
-|:---|:---:|:------------------------------:|:--------:|
-|No.1| [![](/build/images/ytlogo.png)](https://youtube.com) | Install Proxmox, Setup TrueNAS shares and permissions | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
-|No.2| [![](/build/images/ytlogo.png)](https://youtube.com) | Buid VMS, Setup OS and Install Docker | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
-|No.3| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup Adguard and Traefik | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
-|No.5| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup gluetun vpn and media server | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
-|No.6| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup Frigate NVR and Homeassistant | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
-|No.7| [![](/build/images/ytlogo.png)](https://youtube.com) | Setup wireguard VPN server | [![](./build/images/docs_icon.png)](https://docs.linuxserver.io/images/docker-bazarr/) |
+|:---:|:-----:|:-----------------------------:|:-----:|
+|No.1| [![](/build/images/bearlan.png)](https://youtube.com) | Install Proxmox, Setup IOMMU passthrough | [![](./build/images/docs_icon.png)](/docs/ep1.md) |
+|No.1| [![](/build/images/bearlan.png)](https://youtube.com) | VM Setup, TrueNAS shares and permissions| [![](./build/images/docs_icon.png)](/docs/ep2.md) |
+|No.3| [![](/build/images/bearlan.png)](https://youtube.com) | Setup host OS and Install Docker | [![](./build/images/docs_icon.png)](/docs/ep3.md) |
+|No.4| [![](/build/images/bearlan.png)](https://youtube.com) | Setup Adguard and Traefik | [![](./build/images/docs_icon.png)](/docs/ep4.md) |
+|No.5| [![](/build/images/bearlan.png)](https://youtube.com) | Setup gluetun vpn and media server | [![](./build/images/docs_icon.png)](/docs/ep5.md) |
+|No.6| [![](/build/images/bearlan.png)](https://youtube.com) | Setup Frigate NVR and Homeassistant | [![](./build/images/docs_icon.png)](/docs/ep6.md/) |
+|No.7| [![](/build/images/bearlan.png)](https://youtube.com) | Setup wireguard VPN server | [![](./build/images/docs_icon.png)](/docs/ep7.md) |
 
 ## Acknowledgment
 - Template is inspired by the work from [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) Portainer App Template branch in May 2024
