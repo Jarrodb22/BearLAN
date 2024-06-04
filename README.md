@@ -91,7 +91,10 @@ Host {Host IP}
 
 **Create Directories**<br>
  `git clone <repository-url> <target-directory>`<br>
- `cd /docker`<br>
+
+ **IMPORTANT:** Disconnect the remote from the repo, since are production files we dont want to commit any of them as it will likely include some sort of sensitive information.
+ 
+ `git remote remove origin <repository-url>`<br>
 
  (You will get the whole directory, but this is ultimately like other templates, you just import the file structure premade. I think its better this way because i like to operate from VS CODE which I find to be better than portainer, however you can install portainer just as well)<br>
  
