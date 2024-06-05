@@ -105,7 +105,7 @@ In your users directory run this command:
  |:-----:|:----:|:-----------------:|
  |AMD64|Debian|https://github.com/Jarrodb22/docker/tree/main|
 
- You're done! Now just click App Templates and deploy applications!
+ You're done! Now you can input your variables and run the compose files.
  
 ## ARM32 support
 ARM32 support is being dropped, for that reason, i do not have any environment in my home lab using it and this repo is only tested to support AMD64.
