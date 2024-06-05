@@ -1,9 +1,0 @@
-Version: '1'
-
-services:
-#Socks5 HTTPS Proxy
-  socks5:
-    restart: always
-    image: serjs/go-socks5-proxy
-    env_file: .env
-    network_mode: "container:gluetun"

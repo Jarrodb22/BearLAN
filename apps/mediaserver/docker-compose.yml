@@ -1,23 +1,47 @@
 Version: '1'
 
 services:
+#Gluetun VPN tunnel
+  gluetun:
+    image: qmcgaw/gluetun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 1080:1080/tcp # Socks-5
+      - 8112:8112/tcp # Deluge
+    volumes:
+      - ./gluetun/config:/gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER= #Change for your provider
+      - OPENVPN_USER= #username from provider
+      - OPENVPN_PASSWORD= #password from provider
+      - SERVER_REGIONS=US Houston,US Texas #preferred server location
+    restart: unless-stopped
+#Socks5 HTTPS Proxy
+  socks5:
+    restart: always
+    image: serjs/go-socks5-proxy
+    env_file: ./socks5/.env 
+    network_mode: "service:gluetun"
+
 #Deluge Torrent downloader
   deluge:
     image: lscr.io/linuxserver/deluge:latest
     container_name: deluge
-    network_mode: "container:gluetun"
+    network_mode: "service:gluetun"
+    env_file: ./deluge/.env
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
       - DELUGE_LOGLEVEL=error #optional
     volumes:
-      - ./config:/config
-      - /mnt/media/downloads:/downloads
+      - ./deluge/config:/config # Its best not to change this...
+      - /mnt/media/downloads:/downloads # make sure you map to your mounted drive name
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.deluge.rule=Host(`deluge.example.com`)"
+      - "traefik.http.routers.deluge.rule=Host(`deluge.example.com`)" # Change URL
       - "traefik.http.routers.deluge.entrypoints=https"
       - "traefik.http.routers.deluge.tls=true"
       - "traefik.http.services.deluge.loadbalancer.server.port=8112"
@@ -26,20 +50,21 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
+    env_file: ./prowlarr/.env
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Chicago
     volumes:
-      - /portainer/prowlarr/config:/config
+      - ./prowlarr/config:/config # Its best not to change this...
     networks:
      - traefik-proxy
-    ports:
+    # ports:
       # - 9696:9696
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.example.com`)"
+      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.example.com`)" # Change URL
       - "traefik.http.routers.prowlarr.entrypoints=https"
       - "traefik.http.routers.prowlarr.tls=true"
       - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
@@ -48,22 +73,23 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
+    env_file: ./radarr/.env
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Chicago
     volumes:
-      - /portainer/radarr/config:/config
-      - /mnt/media/movies:/movies #optional
-      - /mnt/media/downloads:/downloads #optional
+      - ./radarr/config:/config # Its best not to change this...
+      - /mnt/media/movies:/movies # make sure you map to your mounted drive name
+      - /mnt/media/downloads:/downloads # make sure you map to your mounted drive name
     networks:
      - traefik-proxy
-    ports:
+    # ports:
       # - 7878:7878
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.radarr.rule=Host(`radarr.example.com`)"
+      - "traefik.http.routers.radarr.rule=Host(`radarr.example.com`)" # Change URL
       - "traefik.http.routers.radarr.entrypoints=https"
       - "traefik.http.routers.radarr.tls=true"
       - "traefik.http.services.radarr.loadbalancer.server.port=7878"
@@ -72,22 +98,23 @@ services:
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
+    env_file: ./sonarr/.env
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Chicago
     volumes:
-      - /portainer/sonarr/config:/config
-      - /mnt/media/tv:/tv #optional
-      - /mnt/media/downloads:/downloads #optional
+      - ./sonarr/config:/config # Its best not to change this...
+      - /mnt/media/tv:/tv # make sure you map to your mounted drive name
+      - /mnt/media/downloads:/downloads # make sure you map to your mounted drive name
     networks:
      - traefik-proxy
-    ports:
+    # ports:
       # - 8989:8989
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.sonarr.rule=Host(`sonarr.example.com`)"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.example.com`)" # Change URL
       - "traefik.http.routers.sonarr.entrypoints=https"
       - "traefik.http.routers.sonarr.tls=true"
       - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
@@ -96,23 +123,24 @@ services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
+    env_file: ./jellyfin/.env
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Chicago
     volumes:
-      - /portainer/jellyfin/config:/config
-      - /mnt/media/tv:/data/tvshows
-      - /mnt/media/movies:/data/movies
+      - ./jellyfin/config:/config # Its best not to change this...
+      - /mnt/media/tv:/data/tvshows # make sure you map to your mounted drive name
+      - /mnt/media/movies:/data/movies # make sure you map to your mounted drive name
     networks:
      - traefik-proxy
-    ports:
+    # ports:
       # - 8096:8096
       # - 8920:8920 #optional
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.example.com`)"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.example.com`)" # Change URL
       - "traefik.http.routers.jellyfin.entrypoints=https"
       - "traefik.http.routers.jellyfin.tls=true"
       - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
@@ -121,28 +149,30 @@ services:
   jellyseer:
     image: fallenbagel/jellyseerr:latest
     container_name: jellyseer
+    env_file: ./jellyseer/.env
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Chicago
     volumes:
-      - /portainer/jellyseer/config:/config
+      - ./jellyseer/config:/config # Its best not to change this...
     networks:
      - traefik-proxy
-    ports:
+    # ports:
       # - 5055:5055
     restart: unless-stopped
-    labels:
+    labels: 
       - "traefik.enable=true"
-      - "traefik.http.routers.jellyseer.rule=Host(`jellyseer.example.com`)"
+      - "traefik.http.routers.jellyseer.rule=Host(`jellyseer.example.com`)" # Change URL
       - "traefik.http.routers.jellyseer.entrypoints=https"
       - "traefik.http.routers.jellyseer.tls=true"
-      - "traefik.http.services.jellyseer.loadbalancer.server.port=5055"
+      - "traefik.http.services.jellyseer.loadbalancer.server.port=5055" 
 
 #Flaresolver proxy for prowlarr 
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
     container_name: flaresolverr
+    env_file: ./flaresolverr/.env
     environment:
       - LOG_LEVEL=LOG_LEVEL:-info
       - LOG_HTML=LOG_HTML:-false
@@ -150,20 +180,53 @@ services:
       - TZ=America/Chicago
     networks:
      - traefik-proxy
-    ports:
+    # ports:
       # - 8191:8191
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.flaresolverr.rule=Host(`flaresolverr.example.com`)"
+      - "traefik.http.routers.flaresolverr.rule=Host(`flaresolverr.example.com`)" # Change URL
       - "traefik.http.routers.flaresolverr.entrypoints=https"
       - "traefik.http.routers.flaresolverr.tls=true"
       - "traefik.http.services.flaresolverr.loadbalancer.server.port=8191"
+
+#for ugly files, to make them cleaner
+  unpackerr:
+    image: golift/unpackerr
+    container_name: unpackerr
+    env_file: ./unpackerr/.env
+    volumes:
+      - /mnt/media/downloads:/downloads # make sure you map to your mounted drive name
+    restart: unless-stopped
+    user: 1000:1000
+    environment:
+      - TZ=America/Chicago
+      # Sonarr Config
+      - UN_SONARR_0_URL=http://sonarr.example.com # Input the domain for you use with traefik
+      - UN_SONARR_0_API_KEY= # Change with API key found in settings tab of aplication
+      - UN_SONARR_0_PATHS_0=/downloads
+      - UN_SONARR_0_PROTOCOLS=torrent
+      - UN_SONARR_0_TIMEOUT=10s
+      - UN_SONARR_0_DELETE_ORIG=false
+      - UN_SONARR_0_DELETE_DELAY=5m
+      # Radarr Config
+      - UN_RADARR_0_URL=http://radarr.example.com # Input the domain for you use with traefik
+      - UN_RADARR_0_API_KEY= # Change with API key fo- UNd in settings tab of aplication
+      - UN_RADARR_0_PATHS_0=/downloads
+      - UN_RADARR_0_PROTOCOLS=torrent
+      - UN_RADARR_0_TIMEOUT=10s
+      - UN_RADARR_0_DELETE_ORIG=false
+      - UN_RADARR_0_DELETE_DELAY=5m
+      # Readarr Config
+      - UN_READARR_0_URL=http://radarr.example.com # Input the domain for you use with traefik
+      - UN_READARR_0_API_KEY= # Change with API key fo- UNd in settings tab of aplication
+      - UN_READARR_0_PATHS_0=/downloads
+      - UN_READARR_0_PROTOCOLS=torrent
+      - UN_READARR_0_TIMEOUT=10s
+      - UN_READARR_0_DELETE_ORIG=false
+      - UN_READARR_0_DELETE_DELAY=5m
 
 networks:
 #Traefik Network
   traefik-proxy:
     external: true
-
-
-             

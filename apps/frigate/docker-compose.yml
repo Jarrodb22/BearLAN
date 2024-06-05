@@ -22,18 +22,12 @@ services:
         tmpfs:
           size: 1000000000
     ports:
-      # - "5000:5000" #Web Interface
+      - "5000:5000"
       - "8554:8554" # RTSP feeds
       - "8555:8555/tcp" # WebRTC over tcp
       - "8555:8555/udp" # WebRTC over udp
     environment:
       FRIGATE_RTSP_PASSWORD: ${password}
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.frigate.rule=Host(`frigate.example.com`)"
-      - "traefik.http.routers.frigate.entrypoints=https"
-      - "traefik.http.routers.frigate.tls=true"
-      - "traefik.http.services.frigate.loadbalancer.server.port=5000"
 
 # Mosquitto mqtt broker
   mqtt5:
