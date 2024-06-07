@@ -11,6 +11,8 @@ services:
       # - 8112:8112/tcp # Deluge
     volumes:
       - ./gluetun/config:/gluetun
+    networks:
+     - traefik-proxy
     environment:
       - VPN_SERVICE_PROVIDER= #Change for your provider
       - OPENVPN_USER= #username from provider
