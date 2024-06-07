@@ -6,7 +6,7 @@ I've included for you a template of a few stacks, each stack contains one or a f
 
 I like to edit the compose and config files in vscode through ssh connection. it really makes the process much easier in setup and managing the file structure. I have tried to recreate my file structure within this repo in order to see in the compose files why ive decided to map the volumes the way I have. Also there is sort of an order of operaions for best results, following the youtube guide I will try to do things in order so it works best when you follow along. If you dont want to watch you can see the series over view to get an idea. I will also include documentation for each episode for you to follow along with
 
-![App List](build/images/dockervscode.png)
+![App List](build/images/dockervscode.PNG)
 
 ## Apps List
 [Here](/docs/App-Catalog.md) you can see the list of apps, how I categorize them, and some key links to doccumentation so you can edit the variables easily. I would recomend to host them all on the same machine if possible. For some containers I think its best (or easiest) when you use a macvlan. If you follow with my [youtube series](www.youtube.com) you can see start to finish how ive architechted my server including my file shares and permissions. Both of which I would say are essential for the media server portion.
