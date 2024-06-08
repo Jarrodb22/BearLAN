@@ -29,12 +29,21 @@ vfio_iommu_type1
 vfio_pci
 vfio_virqfd
 ```
+## Confirm settings
+`dmesg | grep -e DMAR -e IOMMU`
+
+`pvesh get /nodes/{nodename}/hardware/pci --pci-class-blacklist ""`
+
+should show IOMMU groups split.
 
 ## IOMMU Interrupt remapping 
+If the Command above shows your groups split as needed then there is no reason to do the steps below.. if you are still having issues, try the blow steps, reboot and confirm again.<br>
+
 `echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/iommu_unsafe_interrupts.conf`
 `echo "options kvm ignore_msrs=1" > /etc/modprobe.d/kvm.conf`
 
-## Update and reboot
+Update and reboot
+
 `update-initramfs -u`
 
 `rboot now`
