@@ -15,7 +15,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet"
 
 Then change it to look like this:
 ```
-GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt pcie_acs_override=downstream,multifunction
+GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt pcie_acs_override=downstream,multifunction"
 ```
 `update-grub`
 
