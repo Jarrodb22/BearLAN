@@ -94,6 +94,7 @@ Host {Host IP}
 In your users directory run this command:
  
  `git clone <repository-url> <target-directory>`<br>
+ 
 (You will get the whole directory, but this is ultimately like other templates, you just import the file structure premade. I think it is better this way because I like to operate from VS CODE which I find to be better than portainer, however, you can install portainer just as well)
  
  `git remote remove origin <repository-url>`<br>
