@@ -79,7 +79,7 @@ For reference, my setup sort of looks like this at a high level:
   ### Setup SSH with VS Code
   On your dev machine install VS Code, if you haven't already, then I  think it's helpful to add the extensions for docker and remote SSH. With this you should have the ability to do most of the editing and management from within the vscode app and with the docker extensions it will show you which directories have running containers.
 
-  To setup, launch the remote SSH config file and paste to your host(s) using this format
+  To setup, launch the remote SSH config file and paste it to your host(s) using this format
  ```
 Host {Host IP}
     User {username}
@@ -94,11 +94,11 @@ Host {Host IP}
 In your users directory run this command:
  
  `git clone <repository-url> <target-directory>`<br>
-(You will get the whole directory, but this is ultimately like other templates, you just import the file structure premade. I think its better this way because i like to operate from VS CODE which I find to be better than portainer, however you can install portainer just as well)
+(You will get the whole directory, but this is ultimately like other templates, you just import the file structure premade. I think it is better this way because I like to operate from VS CODE which I find to be better than portainer, however, you can install portainer just as well)
  
  `git remote remove origin <repository-url>`<br>
 
-  **IMPORTANT:** Disconnect the remote from the repo, since are production files we dont want to commit any of them as it will likely include some sort of sensitive information.
+  **IMPORTANT:** Disconnect the remote from the repo, since there are production files we don't want to commit any of them as it will likely include some sort of sensitive information.
 
  
 **Template Links**<br>
@@ -109,7 +109,7 @@ In your users directory run this command:
  You're done! Now you can input your variables and run the compose files.
  
 ## ARM32 support
-ARM32 support is being dropped, for that reason, i do not have any environment in my home lab using it and this repo is only tested to support AMD64.
+ARM32 support is being dropped, for that reason, I do not have any environment in my home lab using it and this repo is only tested to support AMD64.
 
 ## Youtube Series
 |Episode|Video Link|Title|Docs Link|
