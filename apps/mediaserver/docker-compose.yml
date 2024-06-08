@@ -8,15 +8,26 @@ services:
       - NET_ADMIN
     ports:
       - 1080:1080/tcp # Socks-5
-      - 8112:8112/tcp # Deluge
+      # - 8112:8112/tcp # Deluge
     volumes:
       - ./gluetun/config:/gluetun
+    networks:
+     - traefik-proxy
     environment:
       - VPN_SERVICE_PROVIDER= #Change for your provider
       - OPENVPN_USER= #username from provider
       - OPENVPN_PASSWORD= #password from provider
       - SERVER_REGIONS=US Houston,US Texas #preferred server location
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      # Applications
+      # Deluge
+      - "traefik.http.routers.deluge.rule=Host(`deluge.example.com`)" # Change URL
+      - "traefik.http.routers.deluge.entrypoints=https"
+      - "traefik.http.routers.deluge.tls=true"
+      - "traefik.http.services.deluge.loadbalancer.server.port=8112"
+
 #Socks5 HTTPS Proxy
   socks5:
     restart: always
@@ -39,12 +50,6 @@ services:
       - ./deluge/config:/config # Its best not to change this...
       - /mnt/media/downloads:/downloads # make sure you map to your mounted drive name
     restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.deluge.rule=Host(`deluge.example.com`)" # Change URL
-      - "traefik.http.routers.deluge.entrypoints=https"
-      - "traefik.http.routers.deluge.tls=true"
-      - "traefik.http.services.deluge.loadbalancer.server.port=8112"
 
 #Prolwarr torrent indexer  
   prowlarr:

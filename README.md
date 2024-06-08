@@ -1,24 +1,24 @@
 # Home-LAN-Fun
-Repository for tutorials showing how to create home servers for fun using docker, having all of my services on a local dns with authurized certs from let's encrypt. I originally set up my lab using the [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) repo by [Novaspirit](https://www.youtube.com/channel/UCrjKdwxaQMSV_NDywgKXVmw) who both has a great repo and an amaziing youtube series following allong. The reason I have created ths is so i can easily have docker compose complete with config for multiple containers to quickly spin up applications preset with variables and proper file structure without using portainer. This repository is best when used in conjuntion with my [youtube series](www.youtube.com) explaining the full architecture of my home lab and edited from VS Code.
+Repository for tutorials showing how to create home servers for fun using docker, having all the services on a local DNS with authorized certs from Let's Encrypt. I originally set up my lab using the [Pi-Hosted](https://github.com/pi-hosted/pi-hosted) repo by [Novaspirit](https://www.youtube.com/channel/UCrjKdwxaQMSV_NDywgKXVmw) who both has a great repo and an amazing youtube series following along. I have created this so I can easily have docker-compose complete with config for multiple containers to quickly spin up applications preset with variables and proper file structure without using portainer. This repository is best used in conjunction with my [youtube series](www.youtube.com) explaining the full architecture of my home lab and edited from VS Code.
 
 ## App Template
-I've included for you a template of a few stacks, each stack contains one or a few containers that I use for various uses, the vision is to have a simple way to spin up a bunch of media services, core network tools, and general apps that I use in my home lab. Additionally, I wanted to include the option to edit the docker-compose.yml and manage everything from docker compose to easily see the file stucture and edit the stacks to match your environmental and network settings.
+I've included for you a template of a few stacks, each stack contains one or a few containers that I use for various uses, the vision is to have a simple way to spin up a bunch of media services, core network tools, and general apps that I use in my home lab. Additionally, I wanted to include the option to edit the docker-compose.yml and manage everything from docker-compose to easily see the file structure and edit the stacks to match your environmental and network settings.
 
-I like to edit the compose and config files in vscode through ssh connection. it really makes the process much easier in setup and imagining the file structure. I have tried to recreate my file structure within this repo in order to see in the compose files why ive decided to map the volumes the way I have. Also there is sort of an order of operaions for best results, following the youtube guide I will try to do things in order so it works best when you follow along. If you dont want to watch you can see the series over view to get an idea. I will also include documentation for each episode to follow along with
+I like to edit the compose and config files in vscode through the SSH connection. It makes the process much easier in setting up and managing the file structure. I have tried to recreate my file structure within this repo to see in the compose files why I've decided to map the volumes the way I have. Also, there is sort of an order of operations for best results, following the YouTube guide I will try to do things in order so it works best when you follow along. If you don't want to watch you can see the series overview to get an idea. I will also include documentation for each episode for you to follow along with
 
-![App List](build/images/apps.png)
+![App List](build/images/dockervscode.PNG)
 
 ## Apps List
-[Here](/docs/App-Catalog.md) you can see the list of apps, how I categorize them, and some key links to doccumentation so you can edit the variables easily. I would recomend to host them all on the same machine if possible. For some i think its best (or easiest) when you use a macvlan. If you follow with my [youtube series](www.youtube.com) you can see start to finish how ive architechted my server including my file shares and permissions. Both of which I would say are essential for the media server portion.
+[Here](/docs/App-Catalog.md) you can see the list of apps, how I categorize them, and some key links to documentation so you can edit the variables easily. I would recommend hosting them all on the same machine if possible. For some containers, I think it's best (or easiest) when you use a macvlan. If you follow my [YouTube series](www.youtube.com) you can see from start to finish how I've architected my server including my file shares and permissions. Both of which I would say are essential for the media server portion.
 
-## Instalation Steps
-For the setup, im going to assume that you already have some sort of hypervisor or base os installed on your hardware as well as some form of network attached storage. Its not essential and all of the services will work just fine when installed on your local storage if that is how you have it archetechted.
+## Installation Steps
+For the setup, I'm going to assume that you already have some sort of hypervisor or base OS installed on your hardware as well as some form of network-attached storage. It's not essential to have a network drive, and all of the services will work just fine when installed on your local storage if that is how you have it architected.
 
-For refrence, my setup sort of looks like this at a high level
+For reference, my setup sort of looks like this at a high level:
 
 ![Media Stack](build/images/media%20stack.png)
  ### Setup OS
- On a fresh debian install, you will want to set up the OS as i lay out below. With the os setup this waay you can run these containers easily using data from your shared drives. If you intend to use local directories you can skip this step.
+ On a fresh Debian install, you will want to set up the OS as I lay out below. With the OS setup this way you can run these containers easily using data from your shared drives. If you intend to use local directories you can skip this step.
 
  **Login as root**<br>
  `apt update && apt upgrade -y`
@@ -37,7 +37,7 @@ For refrence, my setup sort of looks like this at a high level
  ```
  //{share ip}/{sharen name} /mnt/{directory} cifs credentials=/root/smbcredentials,uid=1000,gid=1000,noauto,x-systemd.automount 0 0
  ```
- you will need to do this for each drive location. In my instance i only use one and it is /mnt/media.
+ you will need to do this for each drive location. In my instance, I only use one and it is /mnt/media.
 
  **Create credentials file**<br>
  `sudo nano /root/smbcredentials`<br>
@@ -51,19 +51,8 @@ For refrence, my setup sort of looks like this at a high level
  `sudo mount -a`
  `reboot`<br>
  
- ### Setup SSH with VS Code
- On your dev machine install VS Code, if you havent already, then i think its helpful to add the extentions for docker compose and remote SSH. With this you should have the ability to do most of the editiing from within the vscode app and with the docker extentions it 
- will actually show you which directories have running containers.
-
- To setup launch the remote ssh config file and paste in your host(s) using this format
- ```
-Host {Host IP}
-    User {username}
-    Port 22
-```
- 
  ### Install Docker
- Again, just a little extra bit of setup i like to do befor moving onto the portainer install is to set my network configuration to my liking.
+ Again, just a little extra bit of setup I like to do before moving onto the container install is to set my network configuration to my liking.
 
  **Edit interfaces**<br>
  `sudo nano /etc/network/interfaces`<br>
@@ -87,17 +76,30 @@ Host {Host IP}
  **Add user to docker**<br>
  `sudo usermod -aG docker {user}`
 
+  ### Setup SSH with VS Code
+  On your dev machine install VS Code, if you haven't already, then I  think it's helpful to add the extensions for docker and remote SSH. With this you should have the ability to do most of the editing and management from within the vscode app and with the docker extensions it will show you which directories have running containers.
+
+  To setup, launch the remote SSH config file and paste it to your host(s) using this format
+ ```
+Host {Host IP}
+    User {username}
+    Password {password} 
+    Port 22
+```
+ 
+
  ### Add Template
 
 **Create Directories**<br>
 In your users directory run this command:
  
  `git clone <repository-url> <target-directory>`<br>
-(You will get the whole directory, but this is ultimately like other templates, you just import the file structure premade. I think its better this way because i like to operate from VS CODE which I find to be better than portainer, however you can install portainer just as well)
+ 
+(You will get the whole directory, but this is ultimately like other templates, you just import the file structure premade. I think it is better this way because I like to operate from VS CODE which I find to be better than portainer, however, you can install portainer just as well)
  
  `rm -rf .git`<br>
 
-  **IMPORTANT:** Disconnect the remote from the repo, since are production files we dont want to commit any of them as it will likely include some sort of sensitive information.
+  **IMPORTANT:** Disconnect the remote from the repo, since there are production files we don't want to commit any of them as it will likely include some sort of sensitive information.
 
  
 **Template Links**<br>
@@ -108,7 +110,7 @@ In your users directory run this command:
  You're done! Now you can input your variables and run the compose files.
  
 ## ARM32 support
-ARM32 support is being dropped, for that reason, i do not have any environment in my home lab using it and this repo is only tested to support AMD64.
+ARM32 support is being dropped, for that reason, I do not have any environment in my home lab using it and this repo is only tested to support AMD64.
 
 ## Youtube Series
 |Episode|Video Link|Title|Docs Link|
