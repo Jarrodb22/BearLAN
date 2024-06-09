@@ -105,7 +105,7 @@ In your users directory run this command:
 **Template Links**<br>
  |Architechture|OS|Repository URL|
  |:-----:|:----:|:-----------------:|
- |AMD64|Debian|https://github.com/Jarrodb22/docker/tree/main|
+ |AMD64|Debian|https://github.com/Jarrodb22/docker.git|
 
  You're done! Now you can input your variables and run the compose files.
  
